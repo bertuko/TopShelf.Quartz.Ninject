@@ -1,0 +1,1 @@
+# TopShelf.Quartz.Ninject
