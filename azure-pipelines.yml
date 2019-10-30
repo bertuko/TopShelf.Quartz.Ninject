@@ -21,8 +21,6 @@ steps:
 - task: MSBuild@1
   inputs:
     solution: '**/*.sln'
-    platform: 'AnyCPU'
-    configuration: 'Release'
     configuration: 'Release'
 - task: ResharperCli@2
   inputs:
