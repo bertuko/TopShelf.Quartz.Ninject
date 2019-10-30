@@ -40,3 +40,10 @@ steps:
     packagesToPack: '**/*.nuspec'
     versioningScheme: 'off'
     includeSymbols: true
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'c4fbdfb3-0f77-4907-999f-62d24edc6a88'
+    allowPackageConflicts: true
