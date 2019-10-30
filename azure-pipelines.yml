@@ -18,9 +18,6 @@ steps:
 - task: MSBuild@1
   inputs:
     solution: '**/*.sln'
-- task: MSBuild@1
-  inputs:
-    solution: '**/*.sln'
     configuration: 'Release'
 - task: ResharperCli@2
   inputs:
