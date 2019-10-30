@@ -18,6 +18,10 @@ steps:
 - task: MSBuild@1
   inputs:
     solution: '**/*.sln'
+- task: ResharperCli@2
+  inputs:
+    solutionOrProjectPath: './Topshelf.Integrations.sln'
+    failBuildLevelSelector: 'Warning'
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
@@ -26,7 +30,9 @@ steps:
       !**\*TestAdapter.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.nuspec'
+    versioningScheme: 'off'
+    includeSymbols: true
