@@ -20,7 +20,7 @@ steps:
     solution: '**/*.sln'
 - task: ResharperCli@2
   inputs:
-    solutionOrProjectPath: '**/*.sln'
+    solutionOrProjectPath: './Topshelf.Integrations.sln'
     failBuildLevelSelector: 'Warning'
 - task: VSTest@2
   inputs:
