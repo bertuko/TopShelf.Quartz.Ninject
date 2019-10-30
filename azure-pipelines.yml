@@ -18,6 +18,8 @@ steps:
 - task: MSBuild@1
   inputs:
     solution: '**/*.sln'
+    platform: 'AnyCPU'
+    configuration: 'Release'
 - task: ResharperCli@2
   inputs:
     solutionOrProjectPath: './Topshelf.Integrations.sln'
