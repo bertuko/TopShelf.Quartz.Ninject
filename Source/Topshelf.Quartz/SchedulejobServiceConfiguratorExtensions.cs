@@ -86,8 +86,7 @@ namespace Topshelf.Quartz
 
                         foreach (var trigger in triggersForJob)
                         {
-                            var getNextFireTimeUtc = trigger.GetNextFireTimeUtc();
-                            log.Info($"[Topshelf.Quartz] Job Schedule: {trigger} - Next Fire Time (local): {(getNextFireTimeUtc.HasValue ? getNextFireTimeUtc.Value.ToLocalTime().ToString() : "none")}");
+                            log.Info($"[Topshelf.Quartz] Job Schedule: {trigger} - Next Fire Time (local): {trigger.GetNextFireTimeUtc()?.ToLocalTime().ToString() ?? "none"}");
                         }
 
                         if (jobListeners.Any())
