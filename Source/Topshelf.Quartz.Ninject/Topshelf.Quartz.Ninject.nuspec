@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Topshelf.Quartz.Ninject.Integration</id>
-    <version>0.5.0.0</version>
+    <version>0.5.0.1</version>
     <title>Topshelf.Quartz.Ninject.Integration</title>
     <authors>Alberto Baron</authors>
     <owners>bertuko</owners>
@@ -15,8 +15,8 @@
       <dependency id="Ninject" version="3.3.0" />
       <dependency id="Quartz" version="3.0.0" />
       <dependency id="Topshelf" version="4.0.0" />
-      <dependency id="Topshelf.Ninject.Integration" version="5.0.0" />
-      <dependency id="Topshelf.Quartz.Integration" version="5.0.0" />
+      <dependency id="Topshelf.Ninject.Integration" version="5.0.1" />
+      <dependency id="Topshelf.Quartz.Integration" version="5.0.1" />
     </dependencies>
   </metadata>
   <files>
