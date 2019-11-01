@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Topshelf.Quartz.Ninject.Integration</id>
-    <version>0.5.0.1</version>
+    <version>5.0.2</version>
     <title>Topshelf.Quartz.Ninject.Integration</title>
     <authors>Alberto Baron</authors>
     <owners>bertuko</owners>
@@ -12,11 +12,11 @@
     <description>Topshelf.Quartz.Ninject.Integration provides extensions to Topshelf.Quartz allowing you to schedule jobs, built from your Ninject IoC Container, with your service class.</description>
     <tags>Topshelf Quartz Ninject</tags>
     <dependencies>
-      <dependency id="Ninject" version="3.3.0" />
+      <dependency id="Ninject" version="3.2.2" />
       <dependency id="Quartz" version="3.0.0" />
       <dependency id="Topshelf" version="4.0.0" />
-      <dependency id="Topshelf.Ninject.Integration" version="5.0.1" />
-      <dependency id="Topshelf.Quartz.Integration" version="5.0.1" />
+      <dependency id="Topshelf.Ninject.Integration" version="5.0.2" />
+      <dependency id="Topshelf.Quartz.Integration" version="5.0.2" />
     </dependencies>
   </metadata>
   <files>

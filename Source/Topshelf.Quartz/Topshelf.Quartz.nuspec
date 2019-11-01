@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Topshelf.Quartz.Integration</id>
-    <version>0.5.0.1</version>
+    <version>5.0.2</version>
     <title>Topshelf.Quartz.Integration</title>
     <authors>Alberto Baron</authors>
     <owners>bertuko</owners>

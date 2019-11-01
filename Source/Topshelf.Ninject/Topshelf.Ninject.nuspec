@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Topshelf.Ninject.Integration</id>
-    <version>0.5.0.1</version>
+    <version>5.0.2</version>
     <title>Topshelf.Ninject.Integration</title>
     <authors>Alberto Baron</authors>
     <owners>bertuko</owners>
@@ -12,7 +12,7 @@
     <description>Topshelf.Ninject.Integration provides extensions to construct your service class from your Ninject IoC container.</description>
     <tags>Topshelf Ninject</tags>
     <dependencies>
-      <dependency id="Ninject" version="3.3.0" />
+      <dependency id="Ninject" version="3.2.2" />
       <dependency id="TopShelf" version="4.0.0" />
     </dependencies>
   </metadata>
