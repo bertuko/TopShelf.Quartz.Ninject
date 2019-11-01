@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Topshelf.Quartz</id>
+    <id>Topshelf.Quartz.Integration</id>
     <version>0.5.0.0</version>
-    <title>Topshelf.Quartz</title>
+    <title>Topshelf.Quartz.Integration</title>
     <authors>Alberto Baron</authors>
     <owners>bertuko</owners>
     <licenseUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Topshelf.Quartz provides extensions to schedule Quartz jobs along with your service class.</description>
+    <description>Topshelf.Quartz.Integration provides extensions to schedule Quartz jobs along with your service class.</description>
     <tags>Topshelf Quartz</tags>
     <dependencies>
       <dependency id="Quartz" version="3.0.0" />

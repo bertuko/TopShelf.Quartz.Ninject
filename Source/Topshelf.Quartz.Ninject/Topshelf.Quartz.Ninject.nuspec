@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Topshelf.Quartz.Ninject</id>
+    <id>Topshelf.Quartz.Ninject.Integration</id>
     <version>0.5.0.0</version>
-    <title>Topshelf.Quartz.Ninject</title>
+    <title>Topshelf.Quartz.Ninject.Integration</title>
     <authors>Alberto Baron</authors>
     <owners>bertuko</owners>
     <licenseUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Topshelf.Quartz.Ninject provides extensions to Topshelf.Quartz allowing you to schedule jobs, built from your Ninject IoC Container, with your service class.</description>
+    <description>Topshelf.Quartz.Ninject.Integration provides extensions to Topshelf.Quartz allowing you to schedule jobs, built from your Ninject IoC Container, with your service class.</description>
     <tags>Topshelf Quartz Ninject</tags>
     <dependencies>
       <dependency id="Ninject" version="3.3.0" />
