@@ -8,7 +8,7 @@ These use cases include the following:
 
 These packages solve these problems by integrating the following technologies with Topshelf and providing extensions to quickly integrate them.
 
-*	[Quartz.NET](http://quartznet.sourceforge.net/) - Scheduling
+*	[Quartz.NET](https://www.quartz-scheduler.net/) - Scheduling
 *	[Ninject](http://www.ninject.org/) - IoC Container
 
 ## Getting Started
@@ -113,20 +113,24 @@ You may schedule any number of Quartz jobs along with your service like this:
         {
             HostFactory.Run(c =>
             {
-            	// Topshelf.Ninject - Initiates Ninject and consumes Modules
+            	// Topshelf.Ninject :
+		// Initiates Ninject and consumes Modules
                 c.UseNinject(new SampleModule());
 
                 c.Service<SampleService>(s =>
                 {
-                    //Topshelf.Ninject - Construct service using Ninject
+                    // Topshelf.Ninject :
+		    // Construct service using Ninject
                     s.ConstructUsingNinject();
 
                     s.WhenStarted((service, control) => service.Start());
                     s.WhenStopped((service, control) => service.Stop());
 
-                    // Topshelf.Quartz.Ninject - Construct IJob instance with Ninject
+                    // Topshelf.Quartz.Ninject :
+		    // Construct IJob instance with Ninject
                     s.UseNinjectQuartzJobFactory();
 
+                    // Topshelf.Quartz :
                     // Schedule a job to run in the background every 5 seconds.
                     // The full Quartz Builder framework is available here.
                     s.ScheduleQuartzJob(q =>
