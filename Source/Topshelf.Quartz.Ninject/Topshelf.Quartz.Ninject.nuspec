@@ -15,8 +15,8 @@
       <dependency id="Ninject" version="3.3.0" />
       <dependency id="Quartz" version="3.0.0" />
       <dependency id="Topshelf" version="4.0.0" />
-      <dependency id="Topshelf.Ninject" version="5.0.0" />
-      <dependency id="Topshelf.Quartz" version="5.0.0" />
+      <dependency id="Topshelf.Ninject.Integration" version="5.0.0" />
+      <dependency id="Topshelf.Quartz.Integration" version="5.0.0" />
     </dependencies>
   </metadata>
   <files>
