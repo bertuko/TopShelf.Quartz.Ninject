@@ -118,7 +118,7 @@ You may schedule any number of Quartz jobs along with your service like this:
                 c.Service<SampleService>(s =>
                 {
                     // Topshelf.Ninject :
-		    // Construct service using Ninject
+                    // Construct service using Ninject
                     s.ConstructUsingNinject();
 
                     s.WhenStarted((service, control) => service.Start());
