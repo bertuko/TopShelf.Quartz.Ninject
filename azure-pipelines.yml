@@ -13,26 +13,28 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'build'
+    packagesToPack: '**/*.csproj'
+    configuration: 'Release'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*test*.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     configuration: 'Release'
+    nobuild: true
     includesymbols: true
     versioningScheme: 'off'
 - task: ResharperCli@2
   inputs:
     solutionOrProjectPath: './Topshelf.Integrations.sln'
     failBuildLevelSelector: 'Warning'
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/Topshelf.*.nupkg;$(Build.ArtifactStagingDirectory)/**/Topshelf.*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'a848ec3b-3b89-4121-a457-fb5d4fc3807d'
+    publishVstsFeed: 'c4fbdfb3-0f77-4907-999f-62d24edc6a88'
