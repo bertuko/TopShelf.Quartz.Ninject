@@ -25,7 +25,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     configuration: 'Release'
-    includesymbols: true
+    #includesymbols: true
     versioningScheme: 'off'
 #- task: ResharperCli@2
 #  inputs:
@@ -36,4 +36,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'c4fbdfb3-0f77-4907-999f-62d24edc6a88'
+    publishVstsFeed: '19f315e3-f99f-46a3-afc7-298379c7cff4'
