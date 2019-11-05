@@ -80,7 +80,7 @@ namespace Topshelf.Quartz
 
                     if (_scheduler != null && jobDetail != null && jobTriggers.Any())
                     {
-                        var triggersForJob = new HashSet<ITrigger>(jobTriggers);
+                        var triggersForJob = new HashSet<ITrigger>(jobTriggers).ToArray();
                         await _scheduler.ScheduleJob(jobDetail, triggersForJob, replaceJob);
                         log.Info($"[Topshelf.Quartz] Scheduled Job: {jobDetail.Key}");
 
@@ -113,9 +113,9 @@ namespace Topshelf.Quartz
                         {
                             foreach (var listener in scheduleListeners)
                             {
-                                var schedListener = listener();
-                                _scheduler.ListenerManager.AddSchedulerListener(schedListener);
-                                log.Info($"[Topshelf.Quartz] Added Schedule Listener: {schedListener.GetType()}");
+                                var scheduleListener = listener();
+                                _scheduler.ListenerManager.AddSchedulerListener(scheduleListener);
+                                log.Info($"[Topshelf.Quartz] Added Schedule Listener: {scheduleListener.GetType()}");
                             }
                         }
 
