@@ -34,7 +34,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.nuspec'
+    packagesToPack: '**/*.csproj;-:**/*.Tests.csproj'
     versioningScheme: 'off'
     includeSymbols: true
 - task: NuGetCommand@2
