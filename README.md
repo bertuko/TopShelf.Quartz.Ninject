@@ -17,7 +17,7 @@ These packages are available on [Nuget](http://nuget.org/) and can be used in an
 
 ### Topshelf.Ninject
 
-To get the package: `Install-Package Topshelf.Ninject`
+To get the package: `Install-Package Topshelf.Ninject.Integration`
 
 To use Ninject with your Topshelf service, all you need is three lines:
 
@@ -48,7 +48,7 @@ To use Ninject with your Topshelf service, all you need is three lines:
 
 ### Topshelf.Quartz
 
-To get the package: `Install-Package Topshelf.Quartz`
+To get the package: `Install-Package Topshelf.Quartz.Integration`
 
 You may schedule any number of Quartz jobs along with your service like this:
 
@@ -91,9 +91,7 @@ You may schedule any number of Quartz jobs along with your service like this:
 
 ### Topshelf.Quartz.Ninject
 
-To get the package: `Install-Package Topshelf.Quartz.Ninject`
-
-To get the package: `Install-Package Topshelf.WebApi`
+To get the package: `Install-Package Topshelf.Quartz.Ninject.Integration`
 
 You may schedule any number of Quartz jobs along with your service like this:
 
