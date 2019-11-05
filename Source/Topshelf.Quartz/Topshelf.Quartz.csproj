@@ -6,7 +6,7 @@
     <Product>Topshelf.Quartz</Product>
     <Description>Topshelf.Quartz.Integration provides extensions to schedule Quartz jobs along with your service class.</Description>
     <Copyright>Copyright © 2019</Copyright>
-    <Version>5.0.3</Version>
+    <Version>5.0.4</Version>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
     <PackageId>Topshelf.Quartz.Integration</PackageId>
@@ -16,6 +16,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>5.0.4.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
