@@ -27,10 +27,10 @@ steps:
     configuration: 'Release'
     includesymbols: true
     versioningScheme: 'off'
-- task: ResharperCli@2
-  inputs:
-    solutionOrProjectPath: './Topshelf.Integrations.sln'
-    failBuildLevelSelector: 'Warning'
+#- task: ResharperCli@2
+#  inputs:
+#    solutionOrProjectPath: './Topshelf.Integrations.sln'
+#    failBuildLevelSelector: 'Warning'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'push'
