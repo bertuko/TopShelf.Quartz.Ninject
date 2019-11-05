@@ -67,8 +67,8 @@ You may schedule any number of Quartz jobs along with your service like this:
             {
                 c.Service<SampleService>(s =>
                 {
-	            s.ConstructUsing(() => new SampleService());
-		    
+                    s.ConstructUsing(() => new SampleService());
+
                     s.WhenStarted((service, control) => service.Start());
                     s.WhenStopped((service, control) => service.Stop());
 
@@ -111,8 +111,8 @@ You may schedule any number of Quartz jobs along with your service like this:
         {
             HostFactory.Run(c =>
             {
-            	// Topshelf.Ninject :
-		// Initiates Ninject and consumes Modules
+                // Topshelf.Ninject :
+                // Initiates Ninject and consumes Modules
                 c.UseNinject(new SampleModule());
 
                 c.Service<SampleService>(s =>
@@ -125,7 +125,7 @@ You may schedule any number of Quartz jobs along with your service like this:
                     s.WhenStopped((service, control) => service.Stop());
 
                     // Topshelf.Quartz.Ninject :
-		    // Construct IJob instance with Ninject
+                    // Construct IJob instance with Ninject
                     s.UseNinjectQuartzJobFactory();
 
                     // Topshelf.Quartz :
