@@ -17,7 +17,7 @@ These packages are available on [Nuget](http://nuget.org/) and can be used in an
 
 ### Topshelf.Ninject
 
-To get the package: `Install-Package Topshelf.Ninject`
+To get the package: `Install-Package Topshelf.Ninject.Integration`
 
 To use Ninject with your Topshelf service, all you need is three lines:
 
@@ -48,7 +48,7 @@ To use Ninject with your Topshelf service, all you need is three lines:
 
 ### Topshelf.Quartz
 
-To get the package: `Install-Package Topshelf.Quartz`
+To get the package: `Install-Package Topshelf.Quartz.Integration`
 
 You may schedule any number of Quartz jobs along with your service like this:
 
@@ -67,8 +67,8 @@ You may schedule any number of Quartz jobs along with your service like this:
             {
                 c.Service<SampleService>(s =>
                 {
-	            s.ConstructUsing(() => new SampleService());
-		    
+                    s.ConstructUsing(() => new SampleService());
+
                     s.WhenStarted((service, control) => service.Start());
                     s.WhenStopped((service, control) => service.Stop());
 
@@ -91,9 +91,7 @@ You may schedule any number of Quartz jobs along with your service like this:
 
 ### Topshelf.Quartz.Ninject
 
-To get the package: `Install-Package Topshelf.Quartz.Ninject`
-
-To get the package: `Install-Package Topshelf.WebApi`
+To get the package: `Install-Package Topshelf.Quartz.Ninject.Integration`
 
 You may schedule any number of Quartz jobs along with your service like this:
 
@@ -113,21 +111,21 @@ You may schedule any number of Quartz jobs along with your service like this:
         {
             HostFactory.Run(c =>
             {
-            	// Topshelf.Ninject :
-		// Initiates Ninject and consumes Modules
+                // Topshelf.Ninject :
+                // Initiates Ninject and consumes Modules
                 c.UseNinject(new SampleModule());
 
                 c.Service<SampleService>(s =>
                 {
                     // Topshelf.Ninject :
-		    // Construct service using Ninject
+                    // Construct service using Ninject
                     s.ConstructUsingNinject();
 
                     s.WhenStarted((service, control) => service.Start());
                     s.WhenStopped((service, control) => service.Stop());
 
                     // Topshelf.Quartz.Ninject :
-		    // Construct IJob instance with Ninject
+                    // Construct IJob instance with Ninject
                     s.UseNinjectQuartzJobFactory();
 
                     // Topshelf.Quartz :
