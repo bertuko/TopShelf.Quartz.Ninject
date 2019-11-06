@@ -10,7 +10,6 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
     <PackageId>Topshelf.Quartz.Ninject.Integration</PackageId>
-    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</PackageProjectUrl>
     <PackageTags>Topshelf Quartz Ninject</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

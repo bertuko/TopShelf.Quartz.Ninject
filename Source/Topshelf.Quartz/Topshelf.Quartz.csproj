@@ -10,7 +10,6 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
     <PackageId>Topshelf.Quartz.Integration</PackageId>
-    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</PackageProjectUrl>
     <PackageTags>Topshelf Quartz</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -35,8 +34,5 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="QuartzServiceConfiguratorExtensions.cs" />
   </ItemGroup>
 </Project>

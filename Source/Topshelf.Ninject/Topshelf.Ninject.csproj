@@ -10,7 +10,6 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
     <PackageId>Topshelf.Ninject.Integration</PackageId>
-    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</PackageProjectUrl>
     <PackageTags>Topshelf Ninject</PackageTags>
     <AssemblyVersion>5.0.4.0</AssemblyVersion>
