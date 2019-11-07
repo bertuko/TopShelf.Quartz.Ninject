@@ -2,6 +2,7 @@ using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace Topshelf.Quartz
         private static Func<Task<IScheduler>> _customSchedulerFactory;
         private static IScheduler _scheduler;
         private static IJobFactory _jobFactory;
+        private static readonly ConcurrentDictionary<string, ICalendar> Calendars = new ConcurrentDictionary<string, ICalendar>();
 
         public static Func<Task<IScheduler>> SchedulerFactory
         {
@@ -35,7 +37,23 @@ namespace Topshelf.Quartz
             if (_jobFactory != null)
                 scheduler.JobFactory = _jobFactory;
 
+            await scheduler.AddCalendars();
             return scheduler;
+        }
+
+        public static ServiceConfigurator<T> AddCalendar<T>(this ServiceConfigurator<T> configurator, string calendarName, ICalendar calendar) where T : class
+        {
+            Calendars.AddOrUpdate(calendarName, calendar, (k, v) => calendar);
+            return configurator;
+        }
+
+        private static async Task AddCalendars(this IScheduler scheduler)
+        {
+            if (Calendars != null && Calendars.Any())
+                foreach (var calendar in Calendars)
+                {
+                    await scheduler.AddCalendar(calendar.Key, calendar.Value, true, true);
+                }
         }
 
         public static ServiceConfigurator<T> UsingQuartzJobFactory<T, TJobFactory>(this ServiceConfigurator<T> configurator, Func<TJobFactory> jobFactory)

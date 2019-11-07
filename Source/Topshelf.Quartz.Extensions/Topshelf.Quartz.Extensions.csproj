@@ -2,14 +2,14 @@
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <AssemblyTitle>Topshelf.Quartz</AssemblyTitle>
-    <Product>Topshelf.Quartz</Product>
-    <Description>Topshelf.Quartz.Integration provides extensions to schedule Quartz jobs along with your service class.</Description>
+    <AssemblyTitle>Topshelf.Quartz.Extensions</AssemblyTitle>
+    <Product>Topshelf.Quartz.Extensions</Product>
+    <Description>Topshelf.Quartz.Extensions provides extensions to schedule Quartz jobs along with your service class.</Description>
     <Copyright>Copyright © 2019</Copyright>
     <Version>5.0.5</Version>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
-    <PackageId>Topshelf.Quartz.Integration</PackageId>
+    <PackageId>Topshelf.Quartz.Extensions</PackageId>
     <PackageProjectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</PackageProjectUrl>
     <PackageTags>Topshelf Quartz</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -34,5 +34,8 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Topshelf.Quartz\Topshelf.Quartz.csproj" />
   </ItemGroup>
 </Project>

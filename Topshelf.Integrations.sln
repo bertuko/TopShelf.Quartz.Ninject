@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topshelf.Quartz.Ninject.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topshelf.Quartz.Ninject", "Source\Topshelf.Quartz.Ninject\Topshelf.Quartz.Ninject.csproj", "{CAE8542B-816F-4324-96C1-626BF01A9E60}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topshelf.Quartz.Extensions.Tests", "Source\Topshelf.Quartz.Extensions.Tests\Topshelf.Quartz.Extensions.Tests.csproj", "{F9ED7FF4-A7BB-4FCD-9056-DB8CD90DCBAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Topshelf.Quartz.Extensions", "Source\Topshelf.Quartz.Extensions\Topshelf.Quartz.Extensions.csproj", "{F93A83E4-9555-4894-9278-32FDE1FAF843}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{CAE8542B-816F-4324-96C1-626BF01A9E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAE8542B-816F-4324-96C1-626BF01A9E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAE8542B-816F-4324-96C1-626BF01A9E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9ED7FF4-A7BB-4FCD-9056-DB8CD90DCBAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9ED7FF4-A7BB-4FCD-9056-DB8CD90DCBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9ED7FF4-A7BB-4FCD-9056-DB8CD90DCBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9ED7FF4-A7BB-4FCD-9056-DB8CD90DCBAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F93A83E4-9555-4894-9278-32FDE1FAF843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F93A83E4-9555-4894-9278-32FDE1FAF843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F93A83E4-9555-4894-9278-32FDE1FAF843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F93A83E4-9555-4894-9278-32FDE1FAF843}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +74,7 @@ Global
 		{940FD1EA-259A-4321-A7BB-FA8E7EF7A98D} = {CB85E731-D4B1-4140-AAA9-D2CA6EAA583C}
 		{F53211B8-B880-49A4-B1CB-655416994C2D} = {CB85E731-D4B1-4140-AAA9-D2CA6EAA583C}
 		{EC6B1464-2400-4456-B17E-50AF1AE2E155} = {CB85E731-D4B1-4140-AAA9-D2CA6EAA583C}
+		{F9ED7FF4-A7BB-4FCD-9056-DB8CD90DCBAC} = {CB85E731-D4B1-4140-AAA9-D2CA6EAA583C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8E4528B-6AD2-4869-84E0-BBC65D5DDA26}
