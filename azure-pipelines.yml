@@ -16,10 +16,19 @@ steps:
     command: 'build'
     packagesToPack: '**/*.csproj'
     configuration: 'Release'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
     projects: '**/*test*.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'custom'
+    projects: '**/*.csproj'
+    custom: 'pack'
+    arguments: '--output d:\a\1\a /p:Configuration=Release --verbosity Detailed --include-symbols -p:SymbolPackageFormat=snupkg'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
