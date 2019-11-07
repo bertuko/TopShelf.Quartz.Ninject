@@ -11,7 +11,7 @@ namespace Topshelf.Quartz.Tests
         [SetUp]
         public void Setup()
         {
-            SampleJob.HasRun = false;
+            HasJobRun.HasRun = false;
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace Topshelf.Quartz.Tests
 
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
 
-            Assert.IsTrue(SampleJob.HasRun);
+            Assert.IsTrue(HasJobRun.HasRun);
         }
 
     }

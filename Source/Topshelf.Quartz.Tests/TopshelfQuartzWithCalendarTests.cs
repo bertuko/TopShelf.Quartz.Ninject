@@ -12,7 +12,7 @@ namespace Topshelf.Quartz.Tests
         [SetUp]
         public void Setup()
         {
-            SampleJob.HasRun = false;
+            HasJobRun.HasRun = false;
         }
 
         [Test]
@@ -35,9 +35,9 @@ namespace Topshelf.Quartz.Tests
             });
             host.Run();
 
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1.0));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
 
-            Assert.IsFalse(SampleJob.HasRun);
+            Assert.IsFalse(HasJobRun.HasRun);
         }
 
         private static ICalendar GetCalendar()

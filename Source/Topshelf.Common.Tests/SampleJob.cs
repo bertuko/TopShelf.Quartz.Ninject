@@ -3,9 +3,13 @@ using System.Threading.Tasks;
 
 namespace Topshelf.Common.Tests
 {
-    public class SampleJob : IJob
+    public static class HasJobRun
     {
         public static bool HasRun;
+    }
+
+    public class SampleJob : IJob
+    {
 
         protected SampleDependency Dependency;
 
@@ -17,7 +21,7 @@ namespace Topshelf.Common.Tests
         public async Task Execute(IJobExecutionContext context)
         {
             await Dependency.DoWork();
-            HasRun = true;
+            HasJobRun.HasRun = true;
         }
     }
 

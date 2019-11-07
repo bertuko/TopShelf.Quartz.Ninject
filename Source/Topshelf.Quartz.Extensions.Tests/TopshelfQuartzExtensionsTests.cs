@@ -10,7 +10,7 @@ namespace Topshelf.Quartz.Extensions.Tests
         [SetUp]
         public void Setup()
         {
-            SampleJob.HasRun = false;
+            HasJobRun.HasRun = false;
         }
 
         [Test]
@@ -29,9 +29,9 @@ namespace Topshelf.Quartz.Extensions.Tests
                 });
             host.Run();
 
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1.0));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
 
-            Assert.IsTrue(SampleJob.HasRun);
+            Assert.IsTrue(HasJobRun.HasRun);
         }
     }
 }
