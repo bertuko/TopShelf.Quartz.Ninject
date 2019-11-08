@@ -3,13 +3,13 @@ Topshelf.Integrations is a collection of packages that extend the [Topshelf Proj
 
 These use cases include the following:
 
-*	Scheduled activities hosted within a Windows Service
-*	Integration of your preferred IoC Container
+*   Scheduled activities hosted within a Windows Service
+*   Integration of your preferred IoC Container
 
 These packages solve these problems by integrating the following technologies with Topshelf and providing extensions to quickly integrate them.
 
-*	[Quartz.NET](https://www.quartz-scheduler.net/) - Scheduling
-*	[Ninject](http://www.ninject.org/) - IoC Container
+*   [Quartz.NET](https://www.quartz-scheduler.net/) - Scheduling
+*   [Ninject](http://www.ninject.org/) - IoC Container
 
 ## Getting Started
 
@@ -21,11 +21,11 @@ To get the package: `Install-Package Topshelf.Ninject.Integration`
 
 To use Ninject with your Topshelf service, all you need is three lines:
 
-	using Ninject.Modules;
-	using Topshelf;
-	using Topshelf.Ninject;
+    using Ninject.Modules;
+    using Topshelf;
+    using Topshelf.Ninject;
 
-	...
+    ...
 
     class Program
     {
@@ -52,14 +52,14 @@ To get the package: `Install-Package Topshelf.Quartz.Integration`
 
 You may schedule any number of Quartz jobs along with your service like this:
 
-	using System;
-	using Quartz;
-	using Topshelf;
-	using Topshelf.Quartz;
+    using System;
+    using Quartz;
+    using Topshelf;
+    using Topshelf.Quartz;
 
-	...
+    ...
 
-	class Program
+    class Program
     {
         static void Main()
         {
@@ -79,10 +79,10 @@ You may schedule any number of Quartz jobs along with your service like this:
                             JobBuilder.Create<SampleJob>().Build())
                         .AddTrigger(() =>
                             TriggerBuilder.Create()
-	                            .WithSimpleSchedule(builder => builder
-		                            .WithIntervalInSeconds(5)
-		                            .RepeatForever())
-	                            .Build())
+                                .WithSimpleSchedule(builder => builder
+                                    .WithIntervalInSeconds(5)
+                                    .RepeatForever())
+                                .Build())
                         );
                 });
             });
@@ -95,17 +95,17 @@ To get the package: `Install-Package Topshelf.Quartz.Ninject.Integration`
 
 You may schedule any number of Quartz jobs along with your service like this:
 
-	using System;
-	using Ninject.Modules;
-	using Quartz;
-	using Topshelf;
-	using Topshelf.Ninject;
-	using Topshelf.Quartz;
-	using Topshelf.Quartz.Ninject;
+    using System;
+    using Ninject.Modules;
+    using Quartz;
+    using Topshelf;
+    using Topshelf.Ninject;
+    using Topshelf.Quartz;
+    using Topshelf.Quartz.Ninject;
 
-	...
+    ...
 
-	class Program
+    class Program
     {
         static void Main()
         {
@@ -136,11 +136,47 @@ You may schedule any number of Quartz jobs along with your service like this:
                             JobBuilder.Create<SampleJob>().Build())
                         .AddTrigger(() =>
                             TriggerBuilder.Create()
-	                            .WithSimpleSchedule(builder => builder
-		                            .WithIntervalInSeconds(5)
-		                            .RepeatForever())
-	                            .Build())
+                                .WithSimpleSchedule(builder => builder
+                                    .WithIntervalInSeconds(5)
+                                    .RepeatForever())
+                                .Build())
                         );
+                });
+            });
+        }
+    }
+
+### Topshelf.Quartz.Extensions
+
+To get the package: `Install-Package Topshelf.Quartz.Extensions`
+
+You may schedule any number of Quartz jobs along with your service like this:
+
+    using System;
+    using Quartz;
+    using Topshelf;
+    using Topshelf.Quartz;
+    using Topshelf.Quartz.Extensions;
+
+    ...
+
+    class Program
+    {
+        static void Main()
+        {
+            HostFactory.Run(c =>
+            {
+                c.Service<SampleService>(s =>
+                {
+                    s.WhenStarted((service, control) => service.Start());
+                    s.WhenStopped((service, control) => service.Stop());
+
+                    // Topshelf.Quartz.Extensions :
+                    // Schedule a job to run in the background every 5 seconds.
+                    s.ScheduleQuartzJobWithSimpleSchedule<SampleService, SampleJob>(builder => builder.WithIntervalInSeconds(5).RepeatForever());
+
+                    // Schedule a job using a chron schedule.
+                    s.ScheduleQuartzJobWithCronSchedule<SampleService, SampleJob>("0/5 * * * * ?");
                 });
             });
         }
