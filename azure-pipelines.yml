@@ -27,22 +27,11 @@ steps:
     command: 'custom'
     projects: '**/*.csproj'
     custom: 'pack'
-    arguments: '--output d:\a\1\a /p:Configuration=Release --verbosity Detailed --include-symbols -p:SymbolPackageFormat=snupkg'
+    arguments: '--output $(Build.ArtifactStagingDirectory) /p:Configuration=Release --verbosity Detailed --include-symbols -p:SymbolPackageFormat=snupkg'
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    configuration: 'Release'
-    #includesymbols: true
-    versioningScheme: 'off'
-#- task: ResharperCli@2
-#  inputs:
-#    solutionOrProjectPath: './Topshelf.Integrations.sln'
-#    failBuildLevelSelector: 'Warning'
-- task: DotNetCoreCLI@2
-  inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.snupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: '000e943d-e1f7-4080-b5a0-ab69ef23fe5c/19f315e3-f99f-46a3-afc7-298379c7cff4'
+    publishVstsFeed: 'dec3fc13-ba65-439d-b29d-1ae4267bd399'
