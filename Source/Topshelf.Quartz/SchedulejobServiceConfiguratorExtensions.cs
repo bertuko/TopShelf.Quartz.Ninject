@@ -2,7 +2,6 @@ using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,17 +21,13 @@ namespace Topshelf.Quartz
         private static Func<Task<IScheduler>> _customSchedulerFactory;
         private static IScheduler _scheduler;
         private static IJobFactory _jobFactory;
-        private static readonly ConcurrentDictionary<string, ICalendar> Calendars = new ConcurrentDictionary<string, ICalendar>();
-
-        public static Func<Task<IScheduler>> SchedulerFactory
-        {
-            get => _customSchedulerFactory ?? DefaultSchedulerFactory;
-            set => _customSchedulerFactory = value;
-        }
+        private static readonly IList<Func<KeyValuePair<string, ICalendar>>> Calendars =
+            new List<Func<KeyValuePair<string, ICalendar>>>();
 
         private static async Task<IScheduler> GetScheduler()
         {
-            var scheduler = await SchedulerFactory();
+            var schedulerFactory = _customSchedulerFactory ?? DefaultSchedulerFactory;
+            var scheduler = await schedulerFactory();
 
             if (_jobFactory != null)
                 scheduler.JobFactory = _jobFactory;
@@ -41,35 +36,48 @@ namespace Topshelf.Quartz
             return scheduler;
         }
 
-        public static ServiceConfigurator<T> AddCalendar<T>(this ServiceConfigurator<T> configurator, string calendarName, ICalendar calendar) where T : class
+        public static ServiceConfigurator<T> AddCalendar<T>(this ServiceConfigurator<T> configurator,
+            Func<KeyValuePair<string, ICalendar>> calendar) where T : class
         {
-            Calendars.AddOrUpdate(calendarName, calendar, (k, v) => calendar);
+            Calendars.Add(calendar);
             return configurator;
         }
 
         private static async Task AddCalendars(this IScheduler scheduler)
         {
             if (Calendars != null && Calendars.Any())
+            {
                 foreach (var calendar in Calendars)
                 {
-                    await scheduler.AddCalendar(calendar.Key, calendar.Value, true, true);
+                    var cal = calendar();
+                    await scheduler.AddCalendar(cal.Key, cal.Value, true, true);
                 }
+            }
         }
 
-        public static ServiceConfigurator<T> UsingQuartzJobFactory<T, TJobFactory>(this ServiceConfigurator<T> configurator, Func<TJobFactory> jobFactory)
-            where T : class
-            where TJobFactory : IJobFactory
+        public static ServiceConfigurator<T> UsingSchedulerFactory<T>(this ServiceConfigurator<T> configurator,
+            Func<Task<IScheduler>> schedulerFactory) where T : class
+        {
+            _customSchedulerFactory = schedulerFactory;
+            return configurator;
+        }
+
+        public static ServiceConfigurator<T> UsingQuartzJobFactory<T, TJobFactory>(
+            this ServiceConfigurator<T> configurator, Func<TJobFactory> jobFactory)
+            where T : class where TJobFactory : IJobFactory
         {
             _jobFactory = jobFactory();
             return configurator;
         }
 
-        public static ServiceConfigurator<T> UsingQuartzJobFactory<T, TJobFactory>(this ServiceConfigurator<T> configurator) where T : class where TJobFactory : IJobFactory, new()
+        public static ServiceConfigurator<T> UsingQuartzJobFactory<T, TJobFactory>(
+            this ServiceConfigurator<T> configurator) where T : class where TJobFactory : IJobFactory, new()
         {
             return UsingQuartzJobFactory(configurator, () => new TJobFactory());
         }
 
-        public static ServiceConfigurator<T> ScheduleQuartzJob<T>(this ServiceConfigurator<T> configurator, Action<QuartzConfigurator> jobConfigurator, bool replaceJob = false) where T : class
+        public static ServiceConfigurator<T> ScheduleQuartzJob<T>(this ServiceConfigurator<T> configurator,
+            Action<QuartzConfigurator> jobConfigurator, bool replaceJob = false) where T : class
         {
             ConfigureJob(configurator, jobConfigurator, replaceJob);
             return configurator;

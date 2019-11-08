@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using Quartz;
+using Quartz.Impl.Calendar;
 using System;
+using System.Collections.Generic;
 using Topshelf.Common.Tests;
 
 namespace Topshelf.Quartz.Tests
@@ -17,23 +19,33 @@ namespace Topshelf.Quartz.Tests
         [Test]
         public void TestCanScheduleJobAlongsideService()
         {
-            Host host = HostFactory.New(configurator =>
-                                            {
-
-                                                configurator.UseTestHost();
-                                                configurator.Service<SampleService>(s =>
-                                                                                        {
-                                                                                            s.ConstructUsing(settings => new SampleService());
-                                                                                            s.WhenStarted((service, control) => service.Start());
-                                                                                            s.WhenStopped((service, control) => service.Stop());
-                                                                                            s.ScheduleQuartzJob(q => q.WithJob(() => JobBuilder.Create<SampleJob>().Build()).AddTrigger(() => TriggerBuilder.Create().WithSimpleSchedule(builder => builder.WithRepeatCount(0)).Build()));
-                                                                                        });
-                                            });
-            host.Run();
+            const string calendarName = "calendar";
+            HostFactory.Run(configurator =>
+                {
+                    configurator.UseTestHost();
+                    configurator.Service<SampleService>(s =>
+                    {
+                        s.AddCalendar(() => new KeyValuePair<string, ICalendar>(calendarName, GetCalendar()));
+                        s.ConstructUsing(settings => new SampleService());
+                        s.WhenStarted((service, control) => service.Start());
+                        s.WhenStopped((service, control) => service.Stop());
+                        s.ScheduleQuartzJob(q =>
+                            q.WithJob(() =>
+                                JobBuilder.Create<SampleJob>().Build()).AddTrigger(() =>
+                                TriggerBuilder.Create().WithSimpleSchedule(builder => builder.WithRepeatCount(0)).ModifiedByCalendar(calendarName).Build()));
+                    }).StartAutomatically();
+                });
 
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
 
             Assert.IsTrue(HasJobRun.HasRun);
+        }
+
+        private static ICalendar GetCalendar()
+        {
+            var bankHolidayCalendar = new HolidayCalendar();
+            bankHolidayCalendar.AddExcludedDate(DateTime.Today.AddDays(1));
+            return bankHolidayCalendar;
         }
 
     }

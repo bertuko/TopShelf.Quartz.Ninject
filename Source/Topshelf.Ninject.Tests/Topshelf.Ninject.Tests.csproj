@@ -5,7 +5,6 @@
     <AssemblyTitle>Topshelf.Ninject.Tests</AssemblyTitle>
     <Company>Microsoft</Company>
     <Product>Topshelf.Ninject.Tests</Product>
-    <Copyright>Copyright © Microsoft 2015</Copyright>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
