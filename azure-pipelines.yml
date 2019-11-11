@@ -24,10 +24,10 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
-    command: 'custom'
-    projects: '**/*.csproj'
-    custom: 'pack'
-    arguments: '--output $(Build.ArtifactStagingDirectory) /p:Configuration=Release --verbosity Detailed --include-symbols -p:SymbolPackageFormat=snupkg'
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    configuration: 'Release'
+    versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
   inputs:
