@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+
 namespace Topshelf.Common.Tests
 {
     public class SampleNinjectService
@@ -9,8 +12,11 @@ namespace Topshelf.Common.Tests
             _dependency = dependency;
         }
 
-        public bool Start()
+        public bool Start(bool sleep = false)
         {
+            if (sleep)
+                Thread.Sleep(TimeSpan.FromSeconds(3));
+
             _dependency.DoWork();
             return true;
         }

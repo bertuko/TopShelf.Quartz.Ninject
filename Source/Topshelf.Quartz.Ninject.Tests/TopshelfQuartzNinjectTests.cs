@@ -25,7 +25,7 @@ namespace Topshelf.Quartz.Ninject.Tests
                         {
                             s.ConstructUsingNinject();
                             s.UseNinjectQuartzJobFactory();
-                            s.WhenStarted((service, control) => service.Start());
+                            s.WhenStarted((service, control) => service.Start(true));
                             s.WhenStopped((service, control) => service.Stop());
                             s.ScheduleQuartzJob(q =>
                                 q.WithJob(() => JobBuilder.Create<SampleNinjectJob>().Build()).AddTrigger(() =>
