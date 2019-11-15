@@ -2,7 +2,6 @@
 using Quartz;
 using Quartz.Impl.Calendar;
 using System;
-using System.Collections.Generic;
 using Topshelf.Common.Tests;
 
 namespace Topshelf.Quartz.Tests
@@ -25,7 +24,9 @@ namespace Topshelf.Quartz.Tests
                     configurator.UseTestHost();
                     configurator.Service<SampleService>(s =>
                     {
-                        s.AddCalendar(() => new KeyValuePair<string, ICalendar>(calendarName, GetCalendar()));
+                        s.ConfigureQuartzScheduler(() => new SchedulerConfigurator()
+                            .WithCalendar(() => new QuartzCalendarConfig(calendarName, GetCalendar()))
+                        );
                         s.ConstructUsing(settings => new SampleService());
                         s.WhenStarted((service, control) => service.Start());
                         s.WhenStopped((service, control) => service.Stop());
