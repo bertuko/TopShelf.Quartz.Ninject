@@ -35,9 +35,9 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.snupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'dec3fc13-ba65-439d-b29d-1ae4267bd399'
+#- task: DotNetCoreCLI@2
+#  inputs:
+#    command: 'push'
+#    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;$(Build.ArtifactStagingDirectory)/**/*.snupkg'
+#    nuGetFeedType: 'internal'
+#    publishVstsFeed: 'dec3fc13-ba65-439d-b29d-1ae4267bd399'
