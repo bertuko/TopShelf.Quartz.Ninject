@@ -37,8 +37,6 @@ namespace Topshelf.Quartz.Tests
                     }).StartAutomatically();
                 });
 
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
-
             Assert.IsTrue(HasJobRun.HasRun);
         }
 

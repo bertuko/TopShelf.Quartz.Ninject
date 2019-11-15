@@ -8,7 +8,6 @@ namespace Topshelf.Common.Tests
         {
             await Task.Delay(1);
             return true;
-            //_hasRun = true;
         }
     }
 }

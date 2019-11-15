@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
 using Topshelf.Common.Tests;
 
 namespace Topshelf.Quartz.Extensions.Tests
@@ -27,8 +26,6 @@ namespace Topshelf.Quartz.Extensions.Tests
                             s.ScheduleQuartzJobWithSimpleSchedule<SampleService, SampleJob>(builder => builder.WithRepeatCount(0));
                         });
                 });
-
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3.0));
 
             Assert.IsTrue(HasJobRun.HasRun);
         }

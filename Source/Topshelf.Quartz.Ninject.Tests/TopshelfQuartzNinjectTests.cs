@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using Quartz;
-using System;
 using Topshelf.Common.Tests;
 using Topshelf.Ninject;
 
@@ -18,7 +17,7 @@ namespace Topshelf.Quartz.Ninject.Tests
         [Test]
         public void TestCanScheduleJobAlongsideService()
         {
-            var host = HostFactory.New(configurator =>
+            HostFactory.Run(configurator =>
                 {
                     configurator.UseTestHost();
                     configurator.UseNinject(new SampleNinjectModule());
@@ -33,9 +32,6 @@ namespace Topshelf.Quartz.Ninject.Tests
                                     TriggerBuilder.Create().StartNow().Build()));
                         });
                 });
-            host.Run();
-
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
 
             Assert.IsTrue(HasJobRun.HasRun);
         }

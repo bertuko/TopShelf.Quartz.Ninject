@@ -20,8 +20,7 @@ namespace Topshelf.Common.Tests
 
         public async Task Execute(IJobExecutionContext context)
         {
-            await Dependency.DoWork();
-            HasJobRun.HasRun = true;
+            HasJobRun.HasRun = await Dependency.DoWork();
         }
     }
 
