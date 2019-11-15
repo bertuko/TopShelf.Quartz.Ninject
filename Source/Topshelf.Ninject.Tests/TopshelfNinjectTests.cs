@@ -12,19 +12,17 @@ namespace Topshelf.Ninject.Tests
             var hasStarted = false;
             var hasStopped = false;
 
-            Host host = HostFactory.New(configurator =>
-                                            {
-                                                configurator.UseTestHost();
-                                                configurator.UseNinject(new SampleNinjectModule());
-                                                configurator.Service<SampleNinjectService>(s =>
-                                                                                               {
-                                                                                                   s.ConstructUsingNinject();
-                                                                                                   s.WhenStarted((service, control) => hasStarted = service.Start());
-                                                                                                   s.WhenStopped((service, control) => hasStopped = service.Stop());
-                                                                                               });
-                                            });
-
-            TopshelfExitCode exitCode = host.Run();
+            var exitCode = HostFactory.Run(configurator =>
+                {
+                    configurator.UseTestHost();
+                    configurator.UseNinject(new SampleNinjectModule());
+                    configurator.Service<SampleNinjectService>(s =>
+                       {
+                           s.ConstructUsingNinject();
+                           s.WhenStarted((service, control) => hasStarted = service.Start());
+                           s.WhenStopped((service, control) => hasStopped = service.Stop());
+                       });
+                });
 
             Assert.AreEqual(TopshelfExitCode.Ok, exitCode);
             Assert.IsTrue(hasStarted);
