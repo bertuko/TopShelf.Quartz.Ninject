@@ -16,7 +16,7 @@ namespace Topshelf.Quartz.Extensions.Tests
         [Test]
         public void TestCanScheduleJobAlongsideService()
         {
-            var host = HostFactory.New(configurator =>
+            HostFactory.Run(configurator =>
                 {
                     configurator.UseTestHost();
                     configurator.Service<SampleService>(s =>
@@ -27,9 +27,8 @@ namespace Topshelf.Quartz.Extensions.Tests
                             s.ScheduleQuartzJobWithSimpleSchedule<SampleService, SampleJob>(builder => builder.WithRepeatCount(0));
                         });
                 });
-            host.Run();
 
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2.0));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3.0));
 
             Assert.IsTrue(HasJobRun.HasRun);
         }
