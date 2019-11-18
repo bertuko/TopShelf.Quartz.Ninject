@@ -89,6 +89,59 @@ You may schedule any number of Quartz jobs along with your service like this:
         }
     }
 
+You can also add and use Quartz calendars like this:
+
+    using System;
+    using Quartz;
+    using Topshelf;
+    using Topshelf.Quartz;
+
+    ...
+
+    class Program
+    {
+        static void Main()
+        {
+            HostFactory.Run(c =>
+            {
+                c.Service<SampleService>(s =>
+                {
+                    s.ConstructUsing(() => new SampleService());
+
+                    s.WhenStarted((service, control) => service.Start());
+                    s.WhenStopped((service, control) => service.Stop());
+
+                    // Adding a calendar to the Scheduler
+                    s.ConfigureQuartzScheduler(() => new SchedulerConfigurator()
+                        .WithCalendar(() => new QuartzCalendarConfig("calendarName", GetCalendar()))
+                    );
+
+                    // Schedule a job to run in the background every 5 seconds.
+                    // Using the calendar specified above in the trigger.
+                    // The full Quartz Builder framework is available here.
+                    s.ScheduleQuartzJob(q =>
+                        q.WithJob(() =>
+                            JobBuilder.Create<SampleJob>().Build())
+                        .AddTrigger(() =>
+                            TriggerBuilder.Create()
+                                .WithSimpleSchedule(builder => builder
+                                    .WithIntervalInSeconds(5)
+                                    .RepeatForever())
+                                .ModifiedByCalendar("calendarName")
+                                .Build())
+                        );
+                });
+            });
+        }
+
+        private static ICalendar GetCalendar()
+        {
+            var bankHolidayCalendar = new HolidayCalendar();
+            bankHolidayCalendar.AddExcludedDate(DateTime.Today.AddDays(1));
+            return bankHolidayCalendar;
+        }
+    }
+
 ### Topshelf.Quartz.Ninject
 
 To get the package: `Install-Package Topshelf.Quartz.Ninject.Integration`
