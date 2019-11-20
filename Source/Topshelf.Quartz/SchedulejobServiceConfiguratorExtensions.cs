@@ -85,21 +85,23 @@ namespace Topshelf.Quartz
             if ((jobConfig.JobEnabled == null || jobConfig.JobEnabled()) && jobConfig.Job != null && jobConfig.Triggers != null)
             {
                 var jobDetail = jobConfig.Job();
-                var jobTriggers = jobConfig.Triggers.Select(triggerFactory => triggerFactory()).Where(trigger => trigger != null).ToArray();
+                var jobTriggers = jobConfig.Triggers.Select(triggerFactory => triggerFactory()).Where(trigger => trigger != null).ToHashSet()
+#if NET452
+                    .ToArray()
+#endif
+                    ;
 
                 async Task BeforeStartingServiceFunc()
                 {
                     log.Debug("[Topshelf.Quartz] Scheduler starting up...");
 
                     var scheduler = await GetScheduler();
-
                     if (scheduler != null && jobDetail != null && jobTriggers.Any())
                     {
-                        var triggersForJob = new HashSet<ITrigger>(jobTriggers).ToArray();
-                        await scheduler.ScheduleJob(jobDetail, triggersForJob, replaceJob);
+                        await scheduler.ScheduleJob(jobDetail, jobTriggers, replaceJob);
                         log.Info($"[Topshelf.Quartz] Scheduled Job: {jobDetail.Key} of Type: {jobDetail.JobType.Name}");
 
-                        foreach (var trigger in triggersForJob)
+                        foreach (var trigger in jobTriggers)
                         {
                             log.Info($"[Topshelf.Quartz] Job Schedule: {trigger} - Next Fire Time (local): {trigger.GetNextFireTimeUtc()?.ToLocalTime().ToString() ?? "none"}");
                         }
@@ -122,6 +124,11 @@ namespace Topshelf.Quartz
                 configurator.BeforeStartingService(async () => await BeforeStartingServiceFunc());
                 configurator.BeforeStoppingService(async () => await BeforeStoppingServiceFunc());
             }
+        }
+
+        private static HashSet<T> ToHashSet<T>(this IEnumerable<T> collection)
+        {
+            return new HashSet<T>(collection);
         }
     }
 }
