@@ -224,12 +224,21 @@ You may schedule any number of Quartz jobs along with your service like this:
                     s.WhenStarted((service, control) => service.Start());
                     s.WhenStopped((service, control) => service.Stop());
 
-                    // Topshelf.Quartz.Extensions :
-                    // Schedule a job to run in the background every 5 seconds.
-                    s.ScheduleQuartzJobWithSimpleSchedule<SampleService, SampleJob>(builder => builder.WithIntervalInSeconds(5).RepeatForever());
+                    // Topshelf.Quartz.Extensions
+                    s.ScheduleQuartzJobs()
 
-                    // Schedule a job using a chron schedule.
-                    s.ScheduleQuartzJobWithCronSchedule<SampleService, SampleJob>("0/5 * * * * ?");
+                        // Schedule a job to run in the background every 5 seconds.
+                        .WithSimpleSchedule<SampleJob>(builder => builder.WithIntervalInSeconds(5))
+
+                        // Schedule a job using a chron schedule.
+                        .WithCronSchedule<SampleJob>("0/5 * * * * ?")
+
+                        // Schedule jobs using a TriggerBuilder.
+                        .WithTrigger<SampleJob>(() =>
+                            TriggerBuilder.Create().WithSimpleSchedule(builder =>
+                                builder.WithIntervalInSeconds(5))
+                                .WithPriority(5)
+                                .Build())
                 });
             });
         }

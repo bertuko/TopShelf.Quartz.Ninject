@@ -23,7 +23,8 @@ namespace Topshelf.Quartz.Extensions.Tests
                             s.ConstructUsing(settings => new SampleService());
                             s.WhenStarted((service, control) => service.Start());
                             s.WhenStopped((service, control) => service.Stop());
-                            s.ScheduleQuartzJobWithSimpleSchedule<SampleService, SampleJob>(builder => builder.WithRepeatCount(0));
+                            s.ScheduleQuartzJobs()
+                                .WithSimpleSchedule<SampleJob>(builder => builder.WithRepeatCount(0));
                         });
                 });
 

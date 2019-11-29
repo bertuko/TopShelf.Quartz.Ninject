@@ -126,9 +126,6 @@ namespace Topshelf.Quartz
             }
         }
 
-        private static HashSet<T> ToHashSet<T>(this IEnumerable<T> collection)
-        {
-            return new HashSet<T>(collection);
-        }
+        private static HashSet<T> ToHashSet<T>(this IEnumerable<T> collection) => new HashSet<T>(collection);
     }
 }

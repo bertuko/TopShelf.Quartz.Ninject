@@ -6,6 +6,12 @@ namespace Topshelf.Quartz.Extensions
 {
     public static class TopshelfQuartzServiceConfiguratorExtensions
     {
+        public static TopshelfQuartzJobConfigurator<TService> ScheduleQuartzJobs<TService>(this ServiceConfigurator<TService> configurator)
+            where TService : class
+        {
+            return new TopshelfQuartzJobConfigurator<TService>(configurator);
+        }
+
         public static ServiceConfigurator<TService> ScheduleQuartzJobWithCronSchedule<TService, TJob>(
             this ServiceConfigurator<TService> configurator, string cronSchedule, string calendarName = null)
             where TJob : IJob where TService : class

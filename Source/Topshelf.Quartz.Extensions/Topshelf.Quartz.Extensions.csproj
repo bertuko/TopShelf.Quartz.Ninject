@@ -6,16 +6,16 @@
     <Product>Topshelf.Quartz.Extensions</Product>
     <Description>Topshelf.Quartz.Extensions provides extensions to schedule Quartz jobs along with your service class.</Description>
     <Copyright>Copyright © 2019</Copyright>
-    <Version>5.0.6</Version>
+    <Version>5.0.7</Version>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
     <PackageId>Topshelf.Quartz.Extensions</PackageId>
     <PackageProjectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</PackageProjectUrl>
-    <PackageTags>Topshelf Quartz</PackageTags>
+    <PackageTags>Topshelf;Quartz</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>5.0.6.0</AssemblyVersion>
+    <AssemblyVersion>5.0.7.0</AssemblyVersion>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

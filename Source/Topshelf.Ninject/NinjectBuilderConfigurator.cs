@@ -33,7 +33,7 @@ namespace Topshelf.Ninject
             return builder;
         }
 
-        private IKernel GetKernel(INinjectSettings settings, INinjectModule[] modules)
+        private static IKernel GetKernel(INinjectSettings settings, INinjectModule[] modules)
         {
             return settings != null ? new StandardKernel(settings, modules) : new StandardKernel(modules);
         }

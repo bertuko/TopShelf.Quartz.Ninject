@@ -6,16 +6,16 @@
     <Product>Topshelf.Ninject.Integration</Product>
     <Description>Topshelf.Ninject.Integration provides extensions to construct your service class from your Ninject IoC container.</Description>
     <Copyright>Copyright © 2019</Copyright>
-    <Version>5.0.6</Version>
+    <Version>5.0.7</Version>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Alberto Baron</Authors>
     <PackageId>Topshelf.Ninject.Integration</PackageId>
     <PackageProjectUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</PackageProjectUrl>
-    <PackageTags>Topshelf Ninject</PackageTags>
+    <PackageTags>Topshelf;Ninject</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/bertuko/TopShelf.Quartz.Ninject</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>5.0.6.0</AssemblyVersion>
+    <AssemblyVersion>5.0.7.0</AssemblyVersion>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

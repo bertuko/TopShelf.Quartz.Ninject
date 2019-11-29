@@ -17,7 +17,7 @@ namespace Topshelf.Ninject
             var log = HostLogger.Get(typeof(HostConfiguratorExtensions));
 
             log.Info("[Topshelf.Ninject] Integration Started in host.");
-            log.Debug(string.Format("Ninject kernel instantiated with {0} modules.", modules.Length));
+            log.Debug($"Ninject kernel instantiated with {modules.Length} modules.");
 
             configurator.AddConfigurator(new NinjectBuilderConfigurator(settings, modules));
             return configurator;
