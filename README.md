@@ -238,7 +238,7 @@ You may schedule any number of Quartz jobs along with your service like this:
                             TriggerBuilder.Create().WithSimpleSchedule(builder =>
                                 builder.WithIntervalInSeconds(5))
                                 .WithPriority(5)
-                                .Build())
+                                .Build());
                 });
             });
         }
